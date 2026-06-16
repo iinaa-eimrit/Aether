@@ -1,0 +1,56 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+model Player {
+  id               String            @id @default(uuid())
+  name             String            @db.VarChar(255)
+  age              Int
+  team_id          String            @db.Uuid
+  market_value     Decimal           @db.Decimal(10, 2)
+  telemetry_logs   Telemetry_Log[]
+  scouting_reports Scouting_Report[]
+  biometrics       Biometrics[]
+
+  @@index([team_id, age])
+}
+
+model Telemetry_Log {
+  id        String   @id @default(uuid())
+  player_id String
+  match_id  String   @db.Uuid
+  x_coord   Float
+  y_coord   Float
+  timestamp DateTime @db.Timestamptz
+
+  player Player @relation(fields: [player_id], references: [id])
+}
+
+model Scouting_Report {
+  id         String                      @id @default(uuid())
+  player_id  String
+  scout_id   String                      @db.Uuid
+  raw_notes  String
+  embedding  Unsupported("vector(1536)")
+
+  player Player @relation(fields: [player_id], references: [id])
+}
+
+model Biometrics {
+  player_id     String
+  date          DateTime @db.Date
+  training_load Int
+  sleep_score   Int
+  sprint_vol    Float
+
+  player Player @relation(fields: [player_id], references: [id])
+
+  @@id([player_id, date])
+}
