@@ -1,0 +1,8 @@
+
+> api-gateway@1.0.0 build D:\Desktop\projects\Football Project\apps\api-gateway
+> tsc
+
+src/controllers/index.ts(5,7): error TS2742: The inferred type of 'router' cannot be named without a reference to '.pnpm/@types+express-serve-static-core@4.19.8/node_modules/@types/express-serve-static-core'. This is likely not portable. A type annotation is necessary.
+src/graphql/schema.ts(1,29): error TS2307: Cannot find module 'graphql' or its corresponding type declarations.
+src/services/index.ts(5,14): error TS2742: The inferred type of 'getPlayers' cannot be named without a reference to '../../../../packages/database/node_modules/@prisma/client/runtime/library'. This is likely not portable. A type annotation is necessary.
+ ELIFECYCLE  Command failed with exit code 1.
