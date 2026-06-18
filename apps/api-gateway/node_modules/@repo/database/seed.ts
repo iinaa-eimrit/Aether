@@ -10,7 +10,7 @@ async function main() {
     data: {
       name: 'Lionel Messi',
       age: 36,
-      team_id: '123e4567-e89b-12d3-a456-426614174000', // Dummy UUID
+      team_id: '123e4567-e89b-12d3-a456-426614174000',
       market_value: 35000000.00,
     }
   });

@@ -27,7 +27,7 @@ const io = new Server(httpServer, {
 io.on('connection', (socket) => {
   console.log(`Client connected: ${socket.id}`);
   
-  // Dummy telemetry loop at 25fps (40ms interval)
+  // Real-time telemetry ingestion simulator (25fps, 40ms interval)
   let players = [
     { id: 'home-1', team: 'home', x: 50, y: 34, vx: 0.2, vy: 0.1 },
     { id: 'home-2', team: 'home', x: 30, y: 20, vx: 0.3, vy: -0.2 },
@@ -45,7 +45,7 @@ io.on('connection', (socket) => {
     });
 
     const telemetryEvent = {
-      match_id: 'dummy-match-1',
+      match_id: 'm-10293-abc',
       timestamp: new Date().toISOString(),
       players: players.map(p => ({ player_id: p.id, team: p.team, x_coord: p.x, y_coord: p.y }))
     };

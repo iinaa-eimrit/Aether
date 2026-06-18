@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from .models.placeholder import predict_injury_risk
+from .api import endpoints
+from .models.injury_model import predict_injury_risk
 from .rag.scouting_assistant import semantic_search
 
 app = FastAPI(title="Football AI Inference Engine")
